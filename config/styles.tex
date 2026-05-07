@@ -5,22 +5,32 @@
 \newcommand{\thesisbodyfont}{\songti\fontsize{12pt}{20pt}\selectfont}
 
 \titleformat{\section}{\heiti\zihao{3}\centering}{\thesection}{0.5em}{}[]
+\titlespacing{\section}{0pt}{\baselineskip}{\baselineskip}
 \titleformat{\subsection}{\heiti\zihao{-3}}{\thesubsection}{0.5em}{}[]
+\titlespacing{\subsection}{0pt}{\baselineskip}{0pt}
 \titleformat{\subsubsection}{\heiti\zihao{4}}{\thesubsubsection}{0.5em}{}[]
 \titlespacing{\subsubsection}{0pt}{0pt}{0pt}
 
+\newif\ifthesisskiptablefont
+\AtBeginEnvironment{tabular}{\ifthesisskiptablefont\else\zihao{5}\fi}
+\AtBeginEnvironment{tabular*}{\ifthesisskiptablefont\else\zihao{5}\fi}
+
 % 目录样式
-\titlecontents{section}[0pt]{\addvspace{0pt}\filright\heiti\zihao{4}}
+\newcommand{\thesistocsectionfont}{\heiti\fontsize{14pt}{20pt}\selectfont}
+\newcommand{\thesistocsubsectionfont}{\heiti\fontsize{10.5pt}{20pt}\selectfont}
+\newcommand{\thesistocsubsubsectionfont}{\songti\fontsize{10.5pt}{20pt}\selectfont}
+
+\titlecontents{section}[0pt]{\addvspace{0pt}\filright\thesistocsectionfont}
                {\contentspush{\thecontentslabel \quad}}
                {}
                {\titlerule*[8pt]{.}\contentspage}
 
-\titlecontents{subsection}[1em]{\addvspace{0pt}\filright\heiti\zihao{5}}
+\titlecontents{subsection}[1em]{\addvspace{0pt}\filright\thesistocsubsectionfont}
                {\contentspush{\thecontentslabel \quad}}
                {}
                {\titlerule*[8pt]{.}\contentspage}
 
-\titlecontents{subsubsection}[2em]{\addvspace{0pt}\filright\songti\zihao{5}}
+\titlecontents{subsubsection}[2em]{\addvspace{0pt}\filright\thesistocsubsubsectionfont}
                {\contentspush{\thecontentslabel \quad}}
                {}
                {\titlerule*[8pt]{.}\contentspage}
@@ -91,6 +101,7 @@
   filecolor=black,
   urlcolor=black
 }
+\urlstyle{same}
 
 % 伪代码样式
 \renewcommand{\algorithmcfname}{算法}
